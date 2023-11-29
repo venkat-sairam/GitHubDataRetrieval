@@ -1,0 +1,17 @@
+base:
+  project: GitHub Users Data Retrieveal
+  random_state: 12
+
+data_source:
+  usersFiles: UsersDataFiles
+
+data_preparation:
+  training_file: training_users.csv
+  training_file_dir: Training_Files
+  master_dataset: masterDataSet.csv
+
+prediction_data_preparation:
+  prediction_file: prediction_users.csv
+  prediction_file_dir: Prediction_Files
+  master_dataset: masterDataSet.csv
+  prediction_Output_File: usersPredictions.csv

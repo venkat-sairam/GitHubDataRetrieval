@@ -1,0 +1,11 @@
+artifacts_directory:
+  pipeline_name: src
+  artifact_directory: deliverable_artifacts
+
+data_ingestion_configuration:
+  data_ingestion_artifact_directory_name: data_ingestion
+  data_source_url: ""
+  source_data_directory: source_data
+  ingested_data_directory: ingested_data
+  ingested_train_directory: train_data
+  ingested_test_directory: test_data
