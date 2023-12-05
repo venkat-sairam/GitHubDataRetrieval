@@ -36,7 +36,7 @@ jobs:
           git config --local user.email "venkatasairam.y@gmail.com"
           git config --local user.name "venkat-sairam"
           git add -A
-          git diff-index --quiet HEAD || (git commit -a -m "updated logs" --allow-empty)
+          git diff-index --quiet HEAD || (git commit -a -m "workflow updates" --allow-empty)
       - name: Pull latest changes
         run: |
           git pull origin dev 
