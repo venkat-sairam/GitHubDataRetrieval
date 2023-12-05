@@ -141,6 +141,7 @@ class DataIngestionComponent(object):
                 df['contributions_count'] = self.get_contributors_count(df=df, col="contributors_url")
                 temp_df = self.get_languages_count(df, 'languages_url')
                 merged_df = self.merge_dataframes_row_col_wise(df, temp_df)
+                print("Repositories fetched successfully......")
                 return False, merged_df
             else:
                 raise CustomException(f"Error fetching repositories: Status code {repos.status_code}", sys)
@@ -194,6 +195,7 @@ class DataIngestionComponent(object):
         return state_name, df1
 
     def split_dataframe_and_invoke_fetch_repos(self, df,  number_of_sections = 1):
+        print("splittting dataframe and invoking the fetch repositories.......")
         try:
             repos_dict = {}
             section_size = len(df) // number_of_sections
@@ -260,7 +262,7 @@ class DataIngestionComponent(object):
                     raise CustomException(f"No files found in {SAMPLED_USERS_DATASET_FILE_PATH} directory")
             except Exception as e:
                 raise CustomException(e, sys)
-                
+            print(f"Filtered file name: {filtered_file_name}")
             logging.info(f"Filtered file name: {filtered_file_name}")
             combined_df = read_from_csv(file_path= filtered_file_name)
             
