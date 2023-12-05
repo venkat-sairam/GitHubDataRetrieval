@@ -271,7 +271,7 @@ class DataIngestionComponent(object):
             
             source_data_directory = self.data_ingestion_configuration.source_data_directory
             os.makedirs(source_data_directory, exist_ok=True)
-            self.download_users_data(1, "D:\\DM Project\\Testing\\GitHubDataRetrieval\\data\\raw\\state_wise_user_names.csv")
+            self.download_users_data(1, RAW_DATASET_FILE_PATH)
             logging.info(f"Created directory at: {source_data_directory}")
                     
         except Exception as e:
