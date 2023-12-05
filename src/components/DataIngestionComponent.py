@@ -184,7 +184,7 @@ class DataIngestionComponent(object):
 
         
     def fetch_and_update(self, user_name, state_name):
-        print(f"user_name: {user_name}, state_name: {state_name}")
+        # print(f"user_name: {user_name}, state_name: {state_name}")
         exceptionOccurred, df1 = self.fetch_repos(username=user_name, state=state_name)
         if exceptionOccurred:
             return df1, pd.DataFrame()
@@ -197,9 +197,11 @@ class DataIngestionComponent(object):
         try:
             repos_dict = {}
             section_size = len(df) // number_of_sections
+            if section_size == 0:
+                section_size = 1
             for start in range(0, len(df), section_size):
                 end = min(start + section_size, len(df))
-                print(f"start: {start}, end: {end}")
+                # print(f"start: {start}, end: {end}")
                 batch_df = df.iloc[start:end]
                 with ThreadPoolExecutor(max_workers=10) as executor:
                     futures = {executor.submit(self.fetch_and_update, row['username'], row['state']): row for _, row in batch_df.iterrows()}
@@ -220,6 +222,9 @@ class DataIngestionComponent(object):
                 if error_detected: break
                 time_delay_seconds = TIME_DELAY_SECONDS 
                 wait_time = 3600 / section_size
+                if len(df) <=25:
+                    wait_time = 5
+                print(f"Waiting for {wait_time} seconds")
                 time.sleep(wait_time)
                 logging.info(f"Time delay for {time_delay_seconds} seconds")
             create_directories(REPOSITORY_DATA_FILE_DIRECTORY_NAME)
@@ -271,6 +276,7 @@ class DataIngestionComponent(object):
             
             source_data_directory = self.data_ingestion_configuration.source_data_directory
             os.makedirs(source_data_directory, exist_ok=True)
+            print(f"RAW DATA FILE: {RAW_DATASET_FILE_PATH}")
             self.download_users_data(1, RAW_DATASET_FILE_PATH)
             logging.info(f"Created directory at: {source_data_directory}")
                     
