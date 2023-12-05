@@ -3,6 +3,7 @@ name: runs the main python file
 on:
   schedule:
     - cron: "0 */3 * * *"    #runs every 3 hours once
+  workflow_dispatch:
 
 jobs:
   build:
