@@ -2,7 +2,7 @@ from src.constants import ROOT_DIR, CURRENT_TIME_STAMP, os
 USERS_URL = "https://api.github.com/users"
 STATE_WISE_USERSDATA_FILE_NAME = "statewise_users_data.csv"
 STATE_WISE_USERNAMES_FILE_NAME = "state_wise_user_names.csv"
-SAMPLE_SIZES_PERCENTAGES = [0.01, 0.03, 0.05, 0.10, 0.15, 0.20]
+SAMPLE_SIZES_PERCENTAGES = [0.01]
 RANDOM_STATE = 123
 TIME_DELAY_SECONDS = 120
 NUMBER_OF_SECTIONS = 25
