@@ -22,6 +22,9 @@ class PipelineConfiguration(object):
             print(f"Data ingestion configuration completed successfully........!")
             data_ingestion_component = DataIngestionComponent(data_ingestion_configuration)
             data_ingestion_component.github_users_data_extraction_and_writing_to_csv()
+            data_ingestion_component.integrate_data_from_processed_csv_files()
+            logging.info(f"Data Integration completed successfully........!")
+            print(f"Data Integration completed successfully........!")
             print(f"Data ingestion completed successfully")
             logging.info(f"Data ingestion completed successfully")
         except Exception as e:
