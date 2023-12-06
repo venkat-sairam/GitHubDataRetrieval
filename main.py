@@ -4,9 +4,9 @@ from pipeline import PipelineConfiguration
 class main:
 
     def run_pipeline(self) -> None:
-        pipeline = PipelineConfiguration()
-        pipeline.initiate_data_ingestion()
-
+        # pipeline = PipelineConfiguration()
+        # pipeline.initiate_data_ingestion()
+        print("Welcome")
 
 
 if __name__ == '__main__':
