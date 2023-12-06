@@ -285,4 +285,21 @@ class DataIngestionComponent(object):
         except Exception as e:
             raise CustomException(e, sys)
 
+    def integrate_data_from_processed_csv_files(self, base_directory:str =REPOSITORY_DATA_FILE_DIR_NAME ) -> None:
+        all_csv_files = []
+        all_dfs = []
+        for dir in os.listdir(base_directory):
+            dir_path = os.path.join(base_directory, dir)
+            print(f"{dir_path} is the selected data directory")
+            if os.path.exists(dir_path):
+                csv_files = glob.glob(os.path.join(dir_path, '*.csv'))
+                all_csv_files.extend(csv_files)
+        
+        all_dfs = [read_from_csv(file) for file in all_csv_files if file]
+        all_dfs = pd.concat(all_dfs)
+        print(all_dfs.head())
+        integrated_data_set_location_with_ts = os.path.join(INTEGRATED_DATASET_LOCATION, CURRENT_TIME_STAMP)
+        create_directories(directories_path=integrated_data_set_location_with_ts )        
+        write_to_csv(df= all_dfs, file_path= join_paths(integrated_data_set_location_with_ts, INTEGRATED_DATA_FILE_NAME))
+
 
