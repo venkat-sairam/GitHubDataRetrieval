@@ -290,12 +290,20 @@ class DataIngestionComponent(object):
         all_dfs = []
         for dir in os.listdir(base_directory):
             dir_path = os.path.join(base_directory, dir)
-            print(f"{dir_path} is the selected data directory")
+            # print(f"{dir_path} is the selected data directory")
             if os.path.exists(dir_path):
                 csv_files = glob.glob(os.path.join(dir_path, '*.csv'))
                 all_csv_files.extend(csv_files)
         
-        all_dfs = [read_from_csv(file) for file in all_csv_files if file]
+        for file in all_csv_files:
+            try:
+                if file:
+                    all_dfs.append(read_from_csv(file_path=file))
+                    print(f"{file} read successfully")
+            except Exception as e:
+                continue
+        
+        # # all_dfs = [read_from_csv(file) for file in all_csv_files if file]
         all_dfs = pd.concat(all_dfs)
         print(all_dfs.head())
         integrated_data_set_location_with_ts = os.path.join(INTEGRATED_DATASET_LOCATION, CURRENT_TIME_STAMP)
