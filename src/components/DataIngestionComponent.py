@@ -265,7 +265,7 @@ class DataIngestionComponent(object):
             print(f"Filtered file name: {filtered_file_name}")
             logging.info(f"Filtered file name: {filtered_file_name}")
             combined_df = read_from_csv(file_path= filtered_file_name)
-            
+            combined_df = combined_df[0:5]
             # print(f"Combined dataframe after using the head function: {combined_df}")
             self.split_dataframe_and_invoke_fetch_repos(df = combined_df, number_of_sections= NUMBER_OF_SECTIONS)
             
