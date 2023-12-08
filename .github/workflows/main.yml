@@ -1,9 +1,9 @@
 name: runs the main python file
 
-on:
-  schedule:
-    - cron: "0 */2 * * *"    #runs every 2 hours once
-  workflow_dispatch:
+# on:
+#   schedule:
+#     - cron: "0 */2 * * *"    #runs every 2 hours once
+#   workflow_dispatch:
 
 jobs:
   build:
