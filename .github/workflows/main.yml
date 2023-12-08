@@ -1,50 +1,50 @@
-name: runs the main python file
+# name: runs the main python file
 
 # on:
 #   schedule:
 #     - cron: "0 */2 * * *"    #runs every 2 hours once
 #   workflow_dispatch:
 
-jobs:
-  build:
-    runs-on: ubuntu-20.04
-    steps:
+# jobs:
+#   build:
+#     runs-on: ubuntu-20.04
+#     steps:
 
-      - name: checkout repo dev
-        uses: actions/checkout@v2
-        with:
-          ref: dev
+#       - name: checkout repo dev
+#         uses: actions/checkout@v2
+#         with:
+#           ref: dev
 
-      - name: setup python
-        uses: actions/setup-python@v4
+#       - name: setup python
+#         uses: actions/setup-python@v4
 
-        with:
-          python-version: '3.11.5'
+#         with:
+#           python-version: '3.11.5'
       
-      - name: install python packages
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
+#       - name: install python packages
+#         run: |
+#           python -m pip install --upgrade pip
+#           pip install -r requirements.txt
 
-      - name: Execute the python scripts
-        env: 
-          ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-        run: python main.py
+#       - name: Execute the python scripts
+#         env: 
+#           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+#         run: python main.py
 
-      - name: commit files
-        run: |
-          git config --local user.email "venkatasairam.y@gmail.com"
-          git config --local user.name "venkat-sairam"
-          git add -A
-          git diff-index --quiet HEAD || (git commit -a -m "workflow updates" --allow-empty)
-      - name: Pull latest changes
-        run: |
-          git pull origin dev 
+#       - name: commit files
+#         run: |
+#           git config --local user.email "venkatasairam.y@gmail.com"
+#           git config --local user.name "venkat-sairam"
+#           git add -A
+#           git diff-index --quiet HEAD || (git commit -a -m "workflow updates" --allow-empty)
+#       - name: Pull latest changes
+#         run: |
+#           git pull origin dev 
 
-      - name: push changes
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: dev
+#       - name: push changes
+#         uses: ad-m/github-push-action@v0.6.0
+#         with:
+#           github_token: ${{ secrets.GITHUB_TOKEN }}
+#           branch: dev
           
         
