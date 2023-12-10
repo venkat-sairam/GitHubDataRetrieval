@@ -1,6 +1,8 @@
 from src.constants import *
+from src.constants.github_data_constants import *
 from src.utils.util import read_yaml_file
 from src.entity.configuration_entity import DataIngestionConfiguration, TrainingPipelineConfiguration
+from src.entity.configuration_entity import DataTransformationConfiguration
 from src.exceptions.CustomException import CustomException
 from src.logger.logger import logging
 
@@ -59,3 +61,14 @@ class Configuration(object):
         except Exception as e:
             raise CustomException(e, sys)
 
+    def get_data_transformation_configuration(self) -> DataTransformationConfiguration:
+        try:
+            artifact_directory_location = self.training_pipeline_configuration.artifact_directory
+            data_transformation_information = self.configuration_info[DATA_TRANSFORMATION_CONFIGURATION_KEY]
+            data_transformation_artifact_location = os.path.join(artifact_directory_location, data_transformation_information[DATA_TRANSFORMATION_ARTIFACT_DIRECTORY_KEY], self.time_stamp)
+            
+            data_transformation_configuration_details = DataTransformationConfiguration(preprocessed_data_directory= data_transformation_artifact_location)
+            logging.info(f"data transformation configuration details are: {data_transformation_configuration_details}")
+            return data_transformation_configuration_details
+        except CustomException as e:
+            raise   CustomException(e, sys)
