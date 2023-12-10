@@ -78,6 +78,9 @@ target/
 
 # exclude data from source control by default
 
+data/processed/*
+data/integrated/*
+data/raw/*
 
 # Mac OS-specific storage files
 .DS_Store
