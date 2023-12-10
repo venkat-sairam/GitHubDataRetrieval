@@ -9,3 +9,7 @@ data_ingestion_configuration:
   ingested_data_directory: ingested_data
   ingested_train_directory: train_data
   ingested_test_directory: test_data
+
+data_transformation_configuration:
+  data_transformation_artifact_directory_name: data_transformation
+  
