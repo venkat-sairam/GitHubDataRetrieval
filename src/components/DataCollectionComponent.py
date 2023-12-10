@@ -311,7 +311,7 @@ class DataCollectionComponent(object):
         write_to_csv(df= all_dfs, file_path= join_paths(INTEGRATED_DATASET_LOCATION,INTEGRATED_DATA_FILE_NAME))
 
 
-    def initiate_data_preprocessing(self, data_file:str =join_paths(INTEGRATED_DATASET_LOCATION,INTEGRATED_DATA_FILE_NAME) ):
+    # def initiate_data_preprocessing(self, data_file:str =join_paths(INTEGRATED_DATASET_LOCATION,INTEGRATED_DATA_FILE_NAME) ):
         df = read_from_csv(file_path=data_file)
         # Removing the duplicate entries from the dataframe.
         logging.info(f"Removing the duplicate entries from the dataframe.")
