@@ -25,3 +25,6 @@ DATA_INGESTION_INGESTED_DIRECTORY_NAME_KEY = "ingested_data_directory"
 DATA_INGESTION_TRAIN_DIRECTORY_KEY = "ingested_train_directory"
 DATA_INGESTION_TEST_DIRECTORY_KEY = "ingested_test_directory"
 
+# Data Transformation Configuration constants
+DATA_TRANSFORMATION_CONFIGURATION_KEY="data_transformation_configuration"
+DATA_TRANSFORMATION_ARTIFACT_DIRECTORY_KEY = "data_transformation_artifact_directory_name"
