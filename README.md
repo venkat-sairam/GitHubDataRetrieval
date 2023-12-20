@@ -1,6 +1,9 @@
 Data Mining
 ==============================
 
+Here Data Collection files are located under src/components
+
+
 Mining users from github and then performing the analysis on the users data
 
 Project Organization
